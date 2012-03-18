@@ -1,0 +1,48 @@
+/*
+ * This file belongs to the Puma Project.
+ *
+ * This file is under heavy development. But anyone is
+ * entitled to change the code as long as they don't
+ * break the whole project or a part of it.
+ *
+ * File belongs to Abhinav Hardikar
+ *
+ * Developers:
+ * 1) Abhinav Hardikar (a.k.a aHardyX) (Contact: ahardyx@yahoo.in)
+ */
+
+package Core.desktop.DesktopSettings.Frames;
+
+import Core.jFrameworks.jErrorHandler.errDialog;
+
+import java.io.*;
+import javax.swing.*;
+import javax.swing.UIManager;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import net.miginfocom.layout.*;
+import net.miginfocom.swing.*;
+
+public class Wallpaper extends JLayeredPane
+{
+	JLabel lbl;
+
+	public void Components()
+	{
+		lbl = new JLabel("Nothing here yet! Coming Soon...", JLabel.CENTER);
+	}
+
+	public void addComponents()
+	{	
+		this.add(lbl);
+	}
+
+	public Wallpaper()
+	{
+		this.setLayout(new MigLayout());
+		Components();
+		addComponents();
+	}
+}

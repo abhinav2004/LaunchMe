@@ -1,0 +1,87 @@
+/*
+ * This file belongs to the Puma Project.
+ *
+ * This file is under heavy development. But anyone is
+ * entitled to change the code as long as they don't
+ * break the whole project or a part of it.
+ *
+ * File belongs to Abhinav Hardikar
+ *
+ * Developers:
+ * 1) Abhinav Hardikar (a.k.a aHardyX) (Contact: ahardyx@yahoo.in)
+ */
+
+package Core.jFrameworks.jWorkspace.jDock;
+
+import Core.jFrameworks.jWorkspace.WorkspaceSettings.*;
+import Core.jFrameworks.jErrorHandler.errDialog;
+
+import java.io.*;
+import javax.swing.*;
+import javax.swing.UIManager;
+import javax.swing.BorderFactory.*;
+import javax.swing.border.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.*;
+
+import net.miginfocom.layout.*;
+import net.miginfocom.swing.*;
+
+public class jDock extends JLayeredPane implements MouseListener
+{
+	JInternalFrame frame;
+	Toolkit toolkit =  Toolkit.getDefaultToolkit();
+	Dimension ScreenResolution = toolkit.getScreenSize();
+
+	JLabel[] DockIcons;
+
+	private void Components()
+	{
+		DockIcons = new JLabel[2];
+			DockIcons[0] = new JLabel(new ImageIcon("jRes/jIcons/dockIcons/system-log-out.png"));
+				DockIcons[0].addMouseListener(this);
+				DockIcons[0].setToolTipText("Log Out of Puma");
+			DockIcons[1] = new JLabel(new ImageIcon("jRes/jIcons/dockIcons/preferences-system.png"));	
+				DockIcons[1].addMouseListener(this);		
+				DockIcons[1].setToolTipText("Desktop Preferences");
+	}
+
+	private void addComponents()
+	{
+		this.add(DockIcons[1], "w 48, h 48, gapright 5");	
+		this.add(DockIcons[0], "w 48, h 48, gapright 10");	
+	}
+	
+	public void mouseClicked(MouseEvent event)
+	{
+		if (event.getSource() == DockIcons[0])
+		{
+			System.exit(0);
+		}
+		else if (event.getSource() == DockIcons[1])
+		{	
+			System.out.println("CORE: INFO: Showing Desktop Preferences JInternalFrame");
+			frame = new WorkspaceSettings();
+			(this.getParent()).add(frame);
+			frame.setVisible(true);			
+		}
+	}
+
+	public void mouseEntered(MouseEvent event){}
+	public void mousePressed(MouseEvent event){}
+	public void mouseReleased(MouseEvent event){}
+	public void mouseExited(MouseEvent event){}
+
+	public jDock()
+	{
+		this.setBorder(BorderFactory.createTitledBorder("Dock"));
+		this.setLayout(new MigLayout());
+		this.setSize(136,106);
+		this.setLocation(20, ((int) ScreenResolution.getHeight()) - 130);
+		
+		Components();
+		addComponents();
+	}
+	
+}

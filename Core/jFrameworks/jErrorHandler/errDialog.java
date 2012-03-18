@@ -1,0 +1,89 @@
+/*
+ * This file belongs to the Puma Project.
+ *
+ * This file is under heavy development. But anyone is
+ * entitled to change the code as long as they don't
+ * break the whole project or a part of it.
+ *
+ * File belongs to Abhinav Hardikar
+ *
+ * Developers:
+ * 1) Abhinav Hardikar (a.k.a aHardyX) (Contact: ahardyx@yahoo.in)
+ */
+
+package Core.jFrameworks.jErrorHandler;
+
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.Font.*;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+
+import net.miginfocom.layout.*;
+import net.miginfocom.swing.*;
+
+public class errDialog extends JDialog implements ActionListener
+{
+	JLabel img, text1;
+	JTextField err_war_msg;
+	String title;
+	JButton OK;
+	Container contentPane;
+	
+
+	public errDialog(String msg, String type) throws Exception// Syntax: (<Error message>, <Type of Dialog, Warning or error>)
+	{
+		
+		text1 = new JLabel();
+                        
+		contentPane = this.getContentPane();
+		err_war_msg = new JTextField(msg);
+			
+		OK = new JButton("OK");
+			OK.addActionListener(this);
+			
+
+		if(type.equals("war"))
+		{
+			img = new JLabel(new ImageIcon("jRes/jIcons/errIcons/warning.png"));
+			title = new String("Warning!");
+			text1.setText("Warning!");
+		}
+		if(type.equals("err"))
+		{
+			img = new JLabel(new ImageIcon("jRes/jIcons/errIcons/error.png"));
+			title = new String("Error!");
+			text1.setText("An Error has occured!");
+		}
+		else
+			System.out.println("ERROR: There is a problem in the coding. Please contact <developer email> with error code ER001");
+
+
+		this.setTitle(title);
+
+		this.setLayout(new MigLayout());
+		this.setLocationRelativeTo(null);
+		this.setSize(400,200);
+
+		contentPane.add(img, "w 32, h 32, gapleft 10, gaptop 10");
+		contentPane.add(text1, "gapleft 10, gaptop 10, wrap");
+		contentPane.add(new JScrollPane(err_war_msg), "w 370, h 150, gapleft 10, gaptop 10, growx, wrap, span 3");
+		contentPane.add(OK, "w 100, h 26, span 4, right");
+
+		this.setVisible(true);
+	}
+
+	public void actionPerformed(ActionEvent event)
+	{
+		if(event.getSource()==OK)
+		{
+			contentPane.removeAll();
+			this.setVisible(false);
+		}
+	}
+}

@@ -68,6 +68,7 @@ class core
 		else if((THEME_NAME).equals("Metal"))
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		
+		System.out.println("Hi!");
 		loginDialog Frame = new loginDialog();
 		//jWorkspace Frame = new jWorkspace();
 		//System.out.println("Hi!");
